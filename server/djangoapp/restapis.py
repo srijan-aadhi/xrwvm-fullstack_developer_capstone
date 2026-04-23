@@ -55,4 +55,3 @@ def post_review(data_dict):
         return response.json()
     except requests.RequestException:
         print("Network exception occurred")
-    
