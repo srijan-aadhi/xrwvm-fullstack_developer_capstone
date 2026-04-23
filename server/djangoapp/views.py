@@ -130,6 +130,7 @@ def add_review(request):
         return JsonResponse({"status":403,"message":"Unauthorized"})
 
 def get_cars(request):
+    print(f"DEBUG: CarMake is {type(CarMake)}, objects is {getattr(CarMake, 'objects', 'MISSING')}")
     count = CarMake.objects.filter().count()
     print(count)
     if(count == 0):
