@@ -27,7 +27,7 @@ try {
   });
   
 } catch (error) {
-  res.status(500).json({ error: 'Error fetching documents' });
+  console.error("Data seeding failed", error);
 }
 
 
@@ -81,6 +81,18 @@ app.get('/fetchDealers/:state', async (req, res) => {
 // Express route to fetch dealer by a particular id
 app.get('/fetchDealer/:id', async (req, res) => {
 //Write your code here
+    try {
+        const id_revised = Number(req.params.id)
+        const dealersById = await Dealerships.findOne({id: id_revised})
+        res.json(dealersById)
+
+        if (!dealersById) {
+            return res.status(404).json({ error: "Dealer not found" });
+        }
+    } catch (error) {
+        res.status(500).json({error: "Error fetching dealers by ID"})
+    }
+
 });
 
 //Express route to insert review
