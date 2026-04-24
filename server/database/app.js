@@ -118,7 +118,7 @@ app.post(
     const data = JSON.parse(req.body);
 
     const documents = await Reviews.find().sort({ id: -1 });
-    const new_id = documents[0].id + 1;
+    let new_id = documents.length > 0 ? documents[0]['id'] + 1 : 1;
 
     const review = new Reviews({
       id: new_id,

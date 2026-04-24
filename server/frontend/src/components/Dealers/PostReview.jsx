@@ -57,6 +57,7 @@ const PostReview = () => {
   });
 
   const json = await res.json();
+  console.log("Response from server:", json);
   if (json.status === 200) {
       window.location.href = window.location.origin+"/dealer/"+id;
   }
@@ -69,7 +70,7 @@ const PostReview = () => {
     const retobj = await res.json();
     
     if(retobj.status === 200) {
-        setDealer(retobjs.dealer)
+        setDealer(retobj.dealer)
     }
   }
 
